@@ -1,0 +1,55 @@
+{
+  "name": "usps-v3",
+  "version": "1.0.0",
+  "description": "USPS v3 REST API client for Node.js — address validation, tracking, labels, rates, and more.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "usps",
+    "shipping",
+    "address-validation",
+    "tracking",
+    "labels",
+    "rates",
+    "postal",
+    "mail",
+    "rest-api"
+  ],
+  "author": "James Lambert <james@revasser.nyc>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/revereveal/usps-v3-node.git"
+  },
+  "homepage": "https://revaddress.com/docs",
+  "bugs": {
+    "url": "https://github.com/revereveal/usps-v3-node/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}
