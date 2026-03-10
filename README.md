@@ -1,8 +1,14 @@
 # usps-v3
 
+[![npm](https://img.shields.io/npm/v/usps-v3)](https://www.npmjs.com/package/usps-v3)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![RevAddress](https://img.shields.io/badge/Managed%20API-RevAddress-6366f1)](https://revaddress.com)
+
 USPS v3 REST API client for Node.js — address validation, tracking, labels, rates, and more.
 
 **Zero dependencies.** Uses built-in `fetch` (Node 18+). Full TypeScript types included.
+
+> **Don't want to manage USPS credentials?** [RevAddress](https://revaddress.com) provides a managed USPS v3 API with flat monthly pricing, rate limit handling, and BYOK support. [Get a free sandbox key](https://revaddress.com/signup/) — no credit card required.
 
 ## Install
 
@@ -75,7 +81,7 @@ const intlRates = await client.prices.international({
 
 ### Shipping Labels
 
-Label creation requires Payment Authorization credentials (CRID, MIDs, EPA).
+Label creation requires Payment Authorization credentials (CRID, MIDs, EPA). See our [USPS CRID/MID enrollment guide](https://revaddress.com/blog/usps-crid-mid-enrollment/) for step-by-step setup.
 
 ```typescript
 const client = new USPSClient({
@@ -181,6 +187,26 @@ await client.refreshTokens();
 client.close();
 ```
 
+## USPS Rate Limits
+
+The v3 API defaults to **60 requests/hour**. See our [USPS rate limits guide](https://revaddress.com/blog/usps-rate-limits/) for how to request an increase.
+
+## Migration from Web Tools
+
+Migrating from the retired USPS Web Tools XML API? See our [complete migration guide](https://revaddress.com/blog/usps-migration-guide/) and [endpoint mapping reference](https://revaddress.com/blog/usps-web-tools-endpoint-mapping/).
+
+## RevAddress Managed API
+
+If you'd rather not manage USPS OAuth credentials, rate limits, and enrollment yourself, **[RevAddress](https://revaddress.com)** offers a managed REST API:
+
+- **Drop-in USPS v3 API** — same endpoints, managed OAuth
+- **Flat monthly pricing** — no per-label fees ([from $29/mo](https://revaddress.com/pricing/))
+- **Rate limit handling** — 120-600 req/min depending on plan
+- **BYOK support** — bring your own USPS credentials
+- **208 tests, 38 routes** — production-grade infrastructure
+
+[Get a free sandbox key](https://revaddress.com/signup/) — address validation, tracking, and rate shopping included. No credit card required.
+
 ## USPS Developer Portal
 
 1. Register at [developer.usps.com](https://developer.usps.com)
@@ -192,8 +218,13 @@ client.close();
 
 - [Python SDK](https://github.com/revereveal/usps-v3) — same API, Python edition
 - [RevAddress API](https://revaddress.com) — managed USPS API with BYOK support
+- [RevAddress Docs](https://revaddress.com/docs/) — API reference and guides
+- [RevAddress Pricing](https://revaddress.com/pricing/) — flat monthly, no per-label fees
 - [USPS v3 API Docs](https://developer.usps.com/api/81)
+- [npm Package](https://www.npmjs.com/package/usps-v3)
 
 ## License
 
 MIT
+
+Built by [RevAddress](https://revaddress.com) — direct USPS API integration for developers.
