@@ -4,9 +4,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![RevAddress](https://img.shields.io/badge/Managed%20API-RevAddress-6366f1)](https://revaddress.com)
 
-USPS v3 REST API client for Node.js — address validation, tracking, labels, rates, and more.
+USPS v3 REST API client — OAuth 2.0, address validation, tracking, labels, rates. Drop-in replacement for `usps-webtools` and `usps-webtools-promise` (retired January 2026).
 
 **Zero dependencies.** Uses built-in `fetch` (Node 18+). Full TypeScript types included.
+
+> **Migrating from `usps-webtools` or `usps-webtools-promise`?** Those packages use the retired USPS Web Tools XML API (shut down January 25, 2026). This SDK uses the new v3 REST API with OAuth 2.0. See [Migration from usps-webtools](#migration-from-usps-webtools) below.
 
 > **Don't want to manage USPS credentials?** [RevAddress](https://revaddress.com) provides a managed USPS v3 API with flat monthly pricing, rate limit handling, and BYOK support. [Get a free sandbox key](https://revaddress.com/signup/) — no credit card required.
 
@@ -201,9 +203,26 @@ client.close();
 
 The v3 API defaults to **60 requests/hour**. See our [USPS rate limits guide](https://revaddress.com/blog/usps-rate-limits/) for how to request an increase.
 
-## Migration from Web Tools
+## Migration from usps-webtools
 
-Migrating from the retired USPS Web Tools XML API? See our [complete migration guide](https://revaddress.com/blog/usps-migration-guide/) and [endpoint mapping reference](https://revaddress.com/blog/usps-web-tools-endpoint-mapping/).
+The `usps-webtools` and `usps-webtools-promise` npm packages target the **retired** USPS Web Tools XML API (shut down January 25, 2026). If you're using either package, here's how to migrate:
+
+| usps-webtools | usps-v3 |
+|---|---|
+| `verify(address, callback)` | `client.addresses.validate(address)` |
+| `zipCodeLookup(address, callback)` | `client.addresses.cityState(zip)` |
+| `track(trackingNumber, callback)` | `client.tracking.track(trackingNumber)` |
+| `rates(params, callback)` | `client.prices.domestic(params)` |
+| USERID string auth | OAuth 2.0 (Client ID + Secret) |
+| XML responses | JSON responses |
+
+**Key differences:**
+- OAuth 2.0 instead of USERID — register at [developer.usps.com](https://developer.usps.com)
+- Address fields: `Address2` (street) → `streetAddress`, `Address1` (apt) → `secondaryAddress`
+- Rate limits: ~60 req/hr default (old API had no practical limit)
+- All responses are JSON (no XML parsing needed)
+
+Full migration guide: [USPS Web Tools to v3 REST](https://revaddress.com/blog/usps-migration-guide/) | [Endpoint mapping](https://revaddress.com/blog/usps-web-tools-endpoint-mapping/)
 
 ## RevAddress Managed API
 
