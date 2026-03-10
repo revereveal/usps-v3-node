@@ -10,6 +10,16 @@ USPS v3 REST API client for Node.js — address validation, tracking, labels, ra
 
 > **Don't want to manage USPS credentials?** [RevAddress](https://revaddress.com) provides a managed USPS v3 API with flat monthly pricing, rate limit handling, and BYOK support. [Get a free sandbox key](https://revaddress.com/signup/) — no credit card required.
 
+## Migrating from EasyPost or USPS Web Tools?
+
+RevAddress provides a managed USPS v3 API with flat monthly pricing — no per-label fees. If you're migrating from EasyPost (shutting down March 17, 2026) or the legacy USPS Web Tools XML API:
+
+- **[Migration Guide](https://revaddress.com/blog/usps-migration-guide/)** — Step-by-step from XML to REST
+- **[EasyPost vs RevAddress](https://revaddress.com/blog/easypost-vs-revaddress/)** — Feature and pricing comparison
+- **[Endpoint Mapping](https://revaddress.com/blog/usps-web-tools-endpoint-mapping/)** — Every legacy endpoint mapped to v3
+
+Save 81% vs EasyPost at 5,000 labels/mo ($79/mo flat vs $420 in per-label fees). [Get started →](https://revaddress.com/signup/)
+
 ## Install
 
 ```bash
