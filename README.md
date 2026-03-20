@@ -10,7 +10,23 @@ USPS v3 REST API client — OAuth 2.0, address validation, tracking, labels, rat
 
 > **Migrating from `usps-webtools` or `usps-webtools-promise`?** Those packages use the retired USPS Web Tools XML API (shut down January 25, 2026). This SDK uses the new v3 REST API with OAuth 2.0. See [Migration from usps-webtools](#migration-from-usps-webtools) below.
 
-> **Don't want to manage USPS credentials?** [RevAddress](https://revaddress.com) provides a managed USPS v3 API with flat monthly pricing, rate limit handling, and BYOK support. [Get a free sandbox key](https://revaddress.com/signup/) — no credit card required.
+> **Don't want to manage USPS credentials?** [RevAddress](https://revaddress.com) provides the managed USPS lane: hosted OAuth, BYOK continuity, and a developer-facing surface without direct USPS auth plumbing. [Get a free sandbox key](https://revaddress.com/signup/) — no credit card required.
+
+
+## How this family fits together
+
+USPS v3 is one delivery problem with four distinct lanes:
+
+| Need | Best lane |
+|---|---|
+| Direct Python integration | [`revereveal/usps-v3`](https://github.com/revereveal/usps-v3) |
+| Direct Node / TypeScript integration | [`revereveal/usps-v3-node`](https://github.com/revereveal/usps-v3-node) |
+| Direct PHP integration | [`revereveal/usps-v3-php`](https://github.com/revereveal/usps-v3-php) |
+| Managed OAuth, BYOK orchestration, and hosted developer surface | [RevAddress](https://revaddress.com) |
+
+The three SDK repos are sibling public packages, not duplicates. RevAddress is the managed product lane that sits beside them.
+
+> **Human gate note:** SDK installability and package health are separate from USPS enrollment and entitlement friction for production label/payment flows. The public SDK family can be healthy while USPS operator setup still blocks parts of live production rollout.
 
 ## Migrating from EasyPost or USPS Web Tools?
 
@@ -229,10 +245,10 @@ Full migration guide: [USPS Web Tools to v3 REST](https://revaddress.com/blog/us
 If you'd rather not manage USPS OAuth credentials, rate limits, and enrollment yourself, **[RevAddress](https://revaddress.com)** offers a managed REST API:
 
 - **Drop-in USPS v3 API** — same endpoints, managed OAuth
-- **Flat monthly pricing** — no per-label fees ([from $29/mo](https://revaddress.com/pricing/))
-- **Rate limit handling** — 120-600 req/min depending on plan
-- **BYOK support** — bring your own USPS credentials
-- **293 tests, 41 routes** — production-grade infrastructure
+- **Managed OAuth + token lifecycle** — stay out of USPS auth churn
+- **Rate-limit smoothing and hosted developer surface** — practical operator path for real workloads
+- **BYOK support** — bring your own USPS credentials when you need account continuity
+- **Flat monthly pricing** — no per-label fees ([see pricing](https://revaddress.com/pricing/))
 
 [Get a free sandbox key](https://revaddress.com/signup/) — address validation, tracking, and rate shopping included. No credit card required.
 
@@ -245,8 +261,8 @@ If you'd rather not manage USPS OAuth credentials, rate limits, and enrollment y
 
 ## Links
 
-- [Python SDK](https://github.com/revereveal/usps-v3) — same API, Python edition
-- [PHP SDK](https://github.com/revereveal/usps-v3-php) — same API, PHP edition
+- [Python SDK](https://github.com/revereveal/usps-v3) — sibling public SDK for Python
+- [PHP SDK](https://github.com/revereveal/usps-v3-php) — sibling public SDK for PHP
 - [RevAddress API](https://revaddress.com) — managed USPS API with BYOK support
 - [RevAddress Docs](https://revaddress.com/docs/) — API reference and guides
 - [RevAddress Pricing](https://revaddress.com/pricing/) — flat monthly, no per-label fees
